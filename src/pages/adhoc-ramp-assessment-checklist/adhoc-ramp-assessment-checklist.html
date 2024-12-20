@@ -1,0 +1,1087 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+      <p style="color:blue">Adhoc Ramp Handling Assessment Form</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="ramphandlingassessmentForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label fixed style="color: black; text-align: center; font-weight: bold;"> Date </ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" formControlName="date" min="{{ currentdate | date:'yyyy-MM-dd' }}"
+        max="{{ enddate | date:'yyyy-MM-dd' }}" [(ngModel)]="myDate"> </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; font-weight: bold; text-align: center;"> Time </ion-label>
+      <ion-datetime formControlName="inspectiontime" pickerFormat="HH:mm" text-center ngModel required> </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Location / Stand </ion-label>
+      <ion-input type="text" formControlName="baylocation" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Handling Agent / Airline
+      </ion-label>
+      <ion-input type="text" formControlName="airline" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Flight No </ion-label>
+      <ion-input type="text" formControlName="flightno" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> REGN & AC Type: </ion-label>
+      <ion-input type="text" formControlName="regn" text-center required></ion-input>
+    </ion-item>
+    <ion-item class="hide">
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Audited By </ion-label>
+      <ion-input type="text" formControlName="auditedby" text-center [(ngModel)]="user" disabled="true" required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> MIAL Safety Officer Name</ion-label>
+      <ion-input type="text" formControlName="SOName" [(ngModel)]="user" disabled="false" text-center></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Airline or GHA Name</ion-label>
+      <ion-input type="text" formControlName="ghaname" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+    
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Cleaning: </ion-label>
+      <ion-input type="text" formControlName="cleaning" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Caterers: </ion-label>
+      <ion-input type="text" formControlName="caterers" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Cargo: </ion-label>
+      <ion-input type="text" formControlName="cargo" text-center required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Fueller: </ion-label>
+      <ion-input type="text" formControlName="fueller" text-center required></ion-input>
+    </ion-item>
+
+    <div id="demo">
+      <!-- <h1 style="color: navy; font-weight: bold;">
+          Part I: Ramp Assessment for Arriving Aircraft
+        </h1> -->
+      <div class="table-responsive-vertical shadow-z-1">
+        <table id="table1" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Applicable</th>
+              <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+            <tr>
+              <th text-center style="font-weight: bold;">A. General Ground Facility and pre arrival checks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6> Check Staff allocated for aircraft handling are available on stand before arrival of the Aircraft </h6>
+              </td>
+              <td>
+                <input type="radio" value="staffallocations" formControlName="staffallocation">
+              </td>
+              <td>
+                <input type="radio" value="staffallocationus" formControlName="staffallocation">
+              </td>
+              <td>
+                <input type="radio" value="staffallocationna" formControlName="staffallocation">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks01" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check availability of GSE for aircraft handling </h6>
+              </td>
+              <td>
+                <input type="radio" value="gseavailabilitys" formControlName="gseavailability">
+              </td>
+              <td>
+                <input type="radio" value="gseavailabilityus" formControlName="gseavailability">
+              </td>
+              <td>
+                <input type="radio" value="gseavailabilityna" formControlName="gseavailability">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks02" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check condition of paved surface of Apron / Bay </h6>
+              </td>
+              <td>
+                <input type="radio" value="pavedsurfaceconditions" formControlName="pavedsurfacecondition">
+              </td>
+              <td>
+                <input type="radio" value="pavedsurfaceconditionus" formControlName="pavedsurfacecondition">
+              </td>
+              <td>
+                <input type="radio" value="pavedsurfaceconditionna" formControlName="pavedsurfacecondition">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks03" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check availability of safety lines </h6>
+              </td>
+              <td>
+                <input type="radio" value="safetylinesavailabilitys" formControlName="safetylinesavailability">
+              </td>
+              <td>
+                <input type="radio" value="safetylinesavailabilityus" formControlName="safetylinesavailability">
+              </td>
+              <td>
+                <input type="radio" value="safetylinesavailabilityna" formControlName="safetylinesavailability">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks04" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check equipment and vehicles free of loose items </h6>
+              </td>
+              <td>
+                <input type="radio" value="looseitemss" formControlName="looseitems">
+              </td>
+              <td>
+                <input type="radio" value="looseitemsus" formControlName="looseitems">
+              </td>
+              <td>
+                <input type="radio" value="looseitemsna" formControlName="looseitems">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks05" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether stand is clean and clear of foreign object debris ((FOD), Oil, Grease, Rubber marks,
+                  other contamination etc.) </h6>
+              </td>
+              <td>
+                <input type="radio" value="clearoffods" formControlName="clearoffod">
+              </td>
+              <td>
+                <input type="radio" value="clearoffodus" formControlName="clearoffod">
+              </td>
+              <td>
+                <input type="radio" value="clearoffodna" formControlName="clearoffod">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks06" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check FOD bins available on the parking stand and other strategic positions and are FOD bins
+                  emptied regularly </h6>
+              </td>
+              <td>
+                <input type="radio" value="fodbinsavailables" formControlName="fodbinsavailable">
+              </td>
+              <td>
+                <input type="radio" value="fodbinsavailableus" formControlName="fodbinsavailable">
+              </td>
+              <td>
+                <input type="radio" value="fodbinsavailablena" formControlName="fodbinsavailable">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks07" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check availability of Apron Flood Lighting of appropriate luminance such that an aircraft stand
+                  receives light from two or more directions to minimize shadows </h6>
+              </td>
+              <td>
+                <input type="radio" value="apronfloodlightings" formControlName="apronfloodlighting">
+              </td>
+              <td>
+                <input type="radio" value="apronfloodlightingus" formControlName="apronfloodlighting">
+              </td>
+              <td>
+                <input type="radio" value="apronfloodlightingna" formControlName="apronfloodlighting">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks08" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether all equipment parked at designated staging areas and parking brakes or chocks are set
+                </h6>
+              </td>
+              <td>
+                <input type="radio" value="equipmentparkings" formControlName="equipmentparking">
+              </td>
+              <td>
+                <input type="radio" value="equipmentparkingus" formControlName="equipmentparking">
+              </td>
+              <td>
+                <input type="radio" value="equipmentparkingna" formControlName="equipmentparking">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks09" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+               <h6> Check whether all apron equipment and vehicles adhere to the speed limit on the ramp. </h6>
+              </td>
+              <td>
+                <input type="radio" value="vehiclespeedlimits" formControlName="vehiclespeedlimit">
+              </td>
+              <td>
+                <input type="radio" value="vehiclespeedlimitus" formControlName="vehiclespeedlimit">
+              </td>
+              <td>
+                <input type="radio" value="vehiclespeedlimitna" formControlName="vehiclespeedlimit">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks10" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>  
+                                       <h6> Check VDGS serviceability </h6>
+              </td>
+              <td>
+                <input type="radio" value="vdgsserviceabilitys" formControlName="vdgsserviceability">
+              </td>
+              <td>
+                <input type="radio" value="vdgsserviceabilityus" formControlName="vdgsserviceability">
+              </td>
+              <td>
+                <input type="radio" value="vdgsserviceabilityna" formControlName="vdgsserviceability">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks11" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether VDGS is updated with the correct Aircraft type </h6>
+              </td>
+              <td>
+                <input type="radio" value="correctvdgsupdations" formControlName="correctvdgsupdation">
+              </td>
+              <td>
+                <input type="radio" value="correctvdgsupdationus" formControlName="correctvdgsupdation">
+              </td>
+              <td>
+                <input type="radio" value="correctvdgsupdationna" formControlName="correctvdgsupdation">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks12" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check PBB is positioned at home position before arrival of the aircraft </h6>
+              </td>
+              <td>
+                <input type="radio" value="pbbpositions" formControlName="pbbposition">
+              </td>
+              <td>
+                <input type="radio" value="pbbpositionus" formControlName="pbbposition">
+              </td>
+              <td>
+                <input type="radio" value="pbbpositionna" formControlName="pbbposition">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks13" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether warning signal sounds before PBBs are moved </h6>
+              </td>
+              <td>
+                <input type="radio" value="warningsignalsounds" formControlName="warningsignalsound">
+              </td>
+              <td>
+                <input type="radio" value="warningsignalsoundus" formControlName="warningsignalsound">
+              </td>
+              <td>
+                <input type="radio" value="warningsignalsoundna" formControlName="warningsignalsound">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks14" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether emergency exit from bridge/ node building clear of obstructions? </h6>
+              </td>
+              <td>
+                <input type="radio" value="clearofobstructionss" formControlName="clearofobstructions">
+              </td>
+              <td>
+                <input type="radio" value="clearofobstructionsus" formControlName="clearofobstructions">
+              </td>
+              <td>
+                <input type="radio" value="clearofobstructionsna" formControlName="clearofobstructions">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="groundfacilityRemarks15" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table2" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Applicable</th>
+              <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+            <tr>
+              <th text-center style="font-weight: bold;">B. Checks during turnaround and after departure of aircraft
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6> Check whether vehicles and equipment operating in the airside fitted with serviceable
+                  anti-collision lights </h6>
+              </td>
+              <td>
+                <input type="radio" value="anticollisionlightss" formControlName="anticollisionlights">
+              </td>
+              <td>
+                <input type="radio" value="anticollisionlightsus" formControlName="anticollisionlights">
+              </td>
+              <td>
+                <input type="radio" value="anticollisionlightsna" formControlName="anticollisionlights">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks01" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether cargo netting/ restrain system/s adequate in all baggage trolley/pallets etc.? </h6>
+              </td>
+              <td>
+                <input type="radio" value="cargonettings" formControlName="cargonetting">
+              </td>
+              <td>
+                <input type="radio" value="cargonettingus" formControlName="cargonetting">
+              </td>
+              <td>
+                <input type="radio" value="cargonettingna" formControlName="cargonetting">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks02" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether drivers adhere to the limit of maximum permissible speed and standard operating procedures
+                  when on the stand? </h6>
+              </td>
+              <td>
+                <input type="radio" value="speedadherances" formControlName="speedadherance">
+              </td>
+              <td>
+                <input type="radio" value="speedadheranceus" formControlName="speedadherance">
+              </td>
+              <td>
+                <input type="radio" value="speedadherancena" formControlName="speedadherance">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks03" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Are passenger’s movement monitored/escorted around wings and engines when disembarking from
+                  aircraft rear doors? </h6>
+              </td>
+              <td>
+                <input type="radio" value="monitorpassengermovements" formControlName="monitorpassengermovement">
+              </td>
+              <td>
+                <input type="radio" value="monitorpassengermovementus" formControlName="monitorpassengermovement">
+              </td>
+              <td>
+                <input type="radio" value="monitorpassengermovementna" formControlName="monitorpassengermovement">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks04" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Do employees refrain from walking, standing or sitting on a moving conveyor belt? </h6>
+              </td>
+              <td>
+                <input type="radio" value="movingconveyorbelts" formControlName="movingconveyorbelt">
+              </td>
+              <td>
+                <input type="radio" value="movingconveyorbeltus" formControlName="movingconveyorbelt">
+              </td>
+              <td>
+                <input type="radio" value="movingconveyorbeltna" formControlName="movingconveyorbelt">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks05" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether all GSE lowered when not in use </h6>
+              </td>
+              <td>
+                <input type="radio" value="gselowereds" formControlName="gselowered">
+              </td>
+              <td>
+                <input type="radio" value="gseloweredus" formControlName="gselowered">
+              </td>
+              <td>
+                <input type="radio" value="gseloweredna" formControlName="gselowered">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks06" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether catering vehicle guided (Marshalled) into and out of position close to aircraft </h6>
+              </td>
+              <td>
+                <input type="radio" value="guidecateringvehicles" formControlName="guidecateringvehicle">
+              </td>
+              <td>
+                <input type="radio" value="guidecateringvehicleus" formControlName="guidecateringvehicle">
+              </td>
+              <td>
+                <input type="radio" value="guidecateringvehiclena" formControlName="guidecateringvehicle">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks07" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether catering vehicle brakes and/or chocks are applied during servicing </h6>
+              </td>
+              <td>
+                <input type="radio" value="cateringvehiclebrakes" formControlName="cateringvehiclebrake">
+              </td>
+              <td>
+                <input type="radio" value="cateringvehiclebrakeus" formControlName="cateringvehiclebrake">
+              </td>
+              <td>
+                <input type="radio" value="cateringvehiclebrakena" formControlName="cateringvehiclebrake">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks08" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether safety rails are in appropriate position on Bridge (from truck to aircraft)? </h6>
+              </td>
+              <td>
+                <input type="radio" value="safetyrailss" formControlName="safetyrails">
+              </td>
+              <td>
+                <input type="radio" value="safetyrailsus" formControlName="safetyrails">
+              </td>
+              <td>
+                <input type="radio" value="safetyrailsna" formControlName="safetyrails">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks09" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether catering vehicle using reversing and raising alarm? </h6>
+              </td>
+              <td>
+                <input type="radio" value="cateringvehiclealarms" formControlName="cateringvehiclealarm">
+              </td>
+              <td>
+                <input type="radio" value="cateringvehiclealarmus" formControlName="cateringvehiclealarm">
+              </td>
+              <td>
+                <input type="radio" value="cateringvehiclealarmna" formControlName="cateringvehiclealarm">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks10" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether vehicles pass underneath the aircraft fuselage or wings? </h6>
+              </td>
+              <td>
+                <input type="radio" value="vehicleunderneathfuselages" formControlName="vehicleunderneathfuselage">
+              </td>
+              <td>
+                <input type="radio" value="vehicleunderneathfuselageus" formControlName="vehicleunderneathfuselage">
+              </td>
+              <td>
+                <input type="radio" value="vehicleunderneathfuselagena" formControlName="vehicleunderneathfuselage">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks11" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether equipment / vehicles retrieved from stand after departure? </h6>
+              </td>
+              <td>
+                <input type="radio" value="equipmentretrievedfromstands" formControlName="equipmentretrievedfromstand">
+              </td>
+              <td>
+                <input type="radio" value="equipmentretrievedfromstandus" formControlName="equipmentretrievedfromstand">
+              </td>
+              <td>
+                <input type="radio" value="equipmentretrievedfromstandna" formControlName="equipmentretrievedfromstand">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks12" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether PBB disconnected and retrieved / repositioned before pushback </h6>
+              </td>
+              <td>
+                <input type="radio" value="pbbdisconnecteds" formControlName="pbbdisconnected">
+              </td>
+              <td>
+                <input type="radio" value="pbbdisconnectedus" formControlName="pbbdisconnected">
+              </td>
+              <td>
+                <input type="radio" value="pbbdisconnectedna" formControlName="pbbdisconnected">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks13" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether any oil spillage/patch noticed, if yes, informed to the concerned agency for cleaning?
+                </h6>
+              </td>
+              <td>
+                <input type="radio" value="oilspillagenoticeds" formControlName="oilspillagenoticed">
+              </td>
+              <td>
+                <input type="radio" value="oilspillagenoticedus" formControlName="oilspillagenoticed">
+              </td>
+              <td>
+                <input type="radio" value="oilspillagenoticedna" formControlName="oilspillagenoticed">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks14" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Interview: (One Sample) Verify if the driver has all necessary authorization (ADP) to operate a
+                  vehicle on airside and if he/she is knowledgeable on the standard operating procedures governing
+                  vehicular movement on the airport
+                </h6>
+                <br />
+                <ion-input type="text" formControlName="NameADPPersonnel" placeholder="Name"></ion-input>
+                <br />
+                <ion-input type="text" formControlName="ADPNumber" placeholder="ADP No"></ion-input>
+                <br />
+                <ion-input type="text" formControlName="ADPAgency" placeholder="Agency"></ion-input>
+               </td>
+                <td>
+                <input type="radio" value="driverauthorizations" formControlName="driverauthorization">
+              </td>
+              <td>
+                <input type="radio" value="driverauthorizationus" formControlName="driverauthorization">
+              </td>
+              <td>
+                <input type="radio" value="driverauthorizationna" formControlName="driverauthorization">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks15" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether vehicles/staff approaches the aircraft when anti-collision lights are ON? </h6>
+              </td>
+              <td>
+                <input type="radio" value="anticollisionlightsapproachs" formControlName="anticollisionlightsapproach">
+              </td>
+              <td>
+                <input type="radio" value="anticollisionlightsapproachus" formControlName="anticollisionlightsapproach">
+              </td>
+              <td>
+                <input type="radio" value="anticollisionlightsapproachna" formControlName="anticollisionlightsapproach">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks16" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether equipment marshaller available for positioning equipment and vehicles close to aircraft?
+                </h6>
+              </td>
+              <td>
+                <input type="radio" value="equipmentmarshalleravailables" formControlName="equipmentmarshalleravailable">
+              </td>
+              <td>
+                <input type="radio" value="equipmentmarshalleravailableus" formControlName="equipmentmarshalleravailable">
+              </td>
+              <td>
+                <input type="radio" value="equipmentmarshalleravailablena" formControlName="equipmentmarshalleravailable">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks17" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether traffic alerted before pushback on service roads (by use of traffic marshaller/ wing
+                  walkers)? </h6>
+              </td>
+              <td>
+                <input type="radio" value="trafficalertedpushbacks" formControlName="trafficalertedpushback">
+              </td>
+              <td>
+                <input type="radio" value="trafficalertedpushbackus" formControlName="trafficalertedpushback">
+              </td>
+              <td>
+                <input type="radio" value="trafficalertedpushbackna" formControlName="trafficalertedpushback">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks18" placeholder="Observation"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether vehicle drive through or park in the red hatched area under the movable aerobridge </h6>
+              </td>
+              <td>
+                <input type="radio" value="redhatchedareas" formControlName="redhatchedarea">
+              </td>
+              <td>
+                <input type="radio" value="redhatchedareaus" formControlName="redhatchedarea">
+              </td>
+              <td>
+                <input type="radio" value="redhatchedareana" formControlName="redhatchedarea">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks19" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether vehicle left unattended in the vicinity of aircraft? </h6>
+              </td>
+              <td>
+                <input type="radio" value="vehicleunattendeds" formControlName="vehicleunattended">
+              </td>
+              <td>
+                <input type="radio" value="vehicleunattendedus" formControlName="vehicleunattended">
+              </td>
+              <td>
+                <input type="radio" value="vehicleunattendedna" formControlName="vehicleunattended">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks20" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether safety cones are available and have reflective tapes </h6>
+              </td>
+              <td>
+                <input type="radio" value="safetyconesavailables" formControlName="safetyconesavailable">
+              </td>
+              <td>
+                <input type="radio" value="safetyconesavailableus" formControlName="safetyconesavailable">
+              </td>
+              <td>
+                <input type="radio" value="safetyconesavailablena" formControlName="safetyconesavailable">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks21" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> After equipment is positioned at an aircraft whether the gear shift is in neutral or park, and the
+                  parking brakes/chocks/jacks are set before any other control is operated? </h6>
+              </td>
+              <td>
+                <input type="radio" value="gearshiftneutrals" formControlName="gearshiftneutral">
+              </td>
+              <td>
+                <input type="radio" value="gearshiftneutralus" formControlName="gearshiftneutral">
+              </td>
+              <td>
+                <input type="radio" value="gearshiftneutralna" formControlName="gearshiftneutral">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks22" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether any ULDs (Unit Load Device) left on ground or left unsecured at parking stand </h6>
+              </td>
+              <td>
+                <input type="radio" value="uldleftunsecureds" formControlName="uldleftunsecured">
+              </td>
+              <td>
+                <input type="radio" value="uldleftunsecuredus" formControlName="uldleftunsecured">
+              </td>
+              <td>
+                <input type="radio" value="uldleftunsecuredna" formControlName="uldleftunsecured">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks23" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether proper mechanism and procedure for securing of equipment is available? </h6>
+              </td>
+              <td>
+                <input type="radio" value="secureequipmentprocedures" formControlName="secureequipmentprocedure">
+              </td>
+              <td>
+                <input type="radio" value="secureequipmentprocedureus" formControlName="secureequipmentprocedure">
+              </td>
+              <td>
+                <input type="radio" value="secureequipmentprocedurena" formControlName="secureequipmentprocedure">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks24" placeholder="Observation"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether aircraft properly chocked with appropriate & good condition chocks once stationary
+                </h6>
+              </td>
+              <td>
+                <input type="radio" value="aircraftchockeds" formControlName="aircraftchocked">
+              </td>
+              <td>
+                <input type="radio" value="aircraftchockedus" formControlName="aircraftchocked">
+              </td>
+              <td>
+                <input type="radio" value="aircraftchockedna" formControlName="aircraftchocked">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks25" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Are all containers dollies, trollies and pallets etc. serviceable? </h6>
+              </td>
+              <td>
+                <input type="radio" value="containerserviceables" formControlName="containerserviceable">
+              </td>
+              <td>
+                <input type="radio" value="containerserviceableus" formControlName="containerserviceable">
+              </td>
+              <td>
+                <input type="radio" value="containerserviceablena" formControlName="containerserviceable">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks26" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Did technical support staff remove operational waste e.g. engine oil cans? </h6>
+              </td>
+              <td>
+                <input type="radio" value="operationalwastes" formControlName="operationalwaste">
+              </td>
+              <td>
+                <input type="radio" value="operationalwasteus" formControlName="operationalwaste">
+              </td>
+              <td>
+                <input type="radio" value="operationalwastena" formControlName="operationalwaste">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks27" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Whether a trained/authorized person assists in attaching the tow bar? </h6>
+              </td>
+              <td>
+                <input type="radio" value="towbarattachments" formControlName="towbarattachment">
+              </td>
+              <td>
+                <input type="radio" value="towbarattachmentus" formControlName="towbarattachment">
+              </td>
+              <td>
+                <input type="radio" value="towbarattachmentna" formControlName="towbarattachment">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="turnarounddepartureRemarks28" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table3" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Applicable</th>
+              <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+            <tr>
+              <th style="font-weight: bold;">C. Marshalling</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6> Check availability of sufficient number of marshaller </h6>
+              </td>
+              <td>
+                <input type="radio" value="marshalleravailabilitys" formControlName="marshalleravailability">
+              </td>
+              <td>
+                <input type="radio" value="marshalleravailabilityus" formControlName="marshalleravailability">
+              </td>
+              <td>
+                <input type="radio" value="marshalleravailabilityna" formControlName="marshalleravailability">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="marshallingRemarks01" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table4" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Applicable</th>
+              <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+            <tr>
+              <th style="font-weight: bold;">D. Re-fueling facility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6> Check that the hydrant facility is provided with necessary earthing points and inspected regularly.
+                  Check records </h6>
+              </td>
+              <td>
+                <input type="radio" value="hydrantfacilitys" formControlName="hydrantfacility">
+              </td>
+              <td>
+                <input type="radio" value="hydrantfacilityus" formControlName="hydrantfacility">
+              </td>
+              <td>
+                <input type="radio" value="hydrantfacilityna" formControlName="hydrantfacility">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="refuelingfacilityRemarks01" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check that the hydrant pits are grade marked, kept clean and free of water </h6>
+              </td>
+              <td>
+                <input type="radio" value="hydrantpitss" formControlName="hydrantpits">
+              </td>
+              <td>
+                <input type="radio" value="hydrantpitsus" formControlName="hydrantpits">
+              </td>
+              <td>
+                <input type="radio" value="hydrantpitsna" formControlName="hydrantpits">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="refuelingfacilityRemarks02" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check whether employees are using electronic devices within the refueling zones around the aircraft
+                </h6>
+              </td>
+              <td>
+                <input type="radio" value="refuelingzoness" formControlName="refuelingzones">
+              </td>
+              <td>
+                <input type="radio" value="refuelingzonesus" formControlName="refuelingzones">
+              </td>
+              <td>
+                <input type="radio" value="refuelingzonesna" formControlName="refuelingzones">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="refuelingfacilityRemarks03" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table5" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Non Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Applicable</th>
+              <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+            <tr>
+              <th style="font-weight: bold;">E. Tow Tractors / Push Back Tractors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6> Check availability of fire-extinguisher </h6>
+              </td>
+              <td>
+                <input type="radio" value="fireextinguishers" formControlName="fireextinguisher">
+              </td>
+              <td>
+                <input type="radio" value="fireextinguisherus" formControlName="fireextinguisher">
+              </td>
+              <td>
+                <input type="radio" value="fireextinguisherna" formControlName="fireextinguisher">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="tractorsRemarks01" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Check condition of Tyres </h6>
+              </td>
+              <td>
+                <input type="radio" value="tyresconditions" formControlName="tyrescondition">
+              </td>
+              <td>
+                <input type="radio" value="tyresconditionus" formControlName="tyrescondition">
+              </td>
+              <td>
+                <input type="radio" value="tyresconditionna" formControlName="tyrescondition">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="tractorsRemarks02" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6> Are tow bars disconnected from tugs when not in use? </h6>
+              </td>
+              <td>
+                <input type="radio" value="towbarsdisconnecteds" formControlName="towbarsdisconnected">
+              </td>
+              <td>
+                <input type="radio" value="towbarsdisconnectedus" formControlName="towbarsdisconnected">
+              </td>
+              <td>
+                <input type="radio" value="towbarsdisconnectedna" formControlName="towbarsdisconnected">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="tractorsRemarks03" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="table5" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Non Satisfied</th>
+              <th style="color: navy; font-weight: bold;">Not Applicable</th>
+              <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+            <tr>
+              <th style="font-weight: bold;">F. Stand Cleanliness & Fitness </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6> Whether the stand is clean and fit for use by next planned aircraft? </h6>
+              </td>
+              <td>
+                <input type="radio" value="cleanstands" formControlName="cleanstand">
+              </td>
+              <td>
+                <input type="radio" value="cleanstandus" formControlName="cleanstand">
+              </td>
+              <td>
+                <input type="radio" value="cleanstandna" formControlName="cleanstand">
+              </td>
+              <td>
+                <ion-input type="text" formControlName="standcleanlinessRemarks01" placeholder="Remarks">
+                </ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;">Remarks & Signature Of Auditor
+      </ion-label>
+      <ion-textarea formControlName="remarks" ngModel></ion-textarea>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Duty Manager Name </ion-label>
+      <ion-select formControlName="dutymanagername" ngModel required>
+        <ion-option *ngFor="let option of userData" [value]="option.EMAIL_ID"> {{ option.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button ion-button type="submit" block [disabled]="!ramphandlingassessmentForm.valid">Submit Checklist</button>
+  </form>
+</ion-content>

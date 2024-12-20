@@ -1,0 +1,57 @@
+<ion-header>
+    
+  <ion-navbar>
+      <ion-title text-center color="primary">
+          <p style="color:blue; font-size: 16px">Airside Safety Mobile Application</p>
+          <!-- <marquee style="color:red">***This is testing application.Data inserted here will not be replicated in live database.Please do not enter live data ***</marquee> -->
+      </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
+    <form [formGroup] = "loginForm" (ngSubmit)="login()">
+      <ion-list inset [@bounceInBottom]="formState">
+        <ion-item>
+          <ion-label floating color="danger">Enter Your Employee Id</ion-label>
+          <ion-input type="text" formControlName="EMP_ID" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating color="danger">Password</ion-label>
+          <ion-input type="password" formControlName="uM_PASSWORD" required></ion-input>
+        </ion-item>
+        <h5 style="color: white">Captcha</h5>
+        <canvas id="canvas" #myCanvas style="
+        width: 270px;
+        height: 80px;
+        border: solid 1px #c2c4c6;
+        font-size: 45px;
+        padding-left: 8px;margin: 0
+      "></canvas>
+        <ion-item>
+          
+          <ion-input  type="text" formControlName="code" required></ion-input>
+        </ion-item>
+
+
+      </ion-list>
+
+
+<!--       
+      <div class="sc-container h-15">
+      
+        <ion-input name="code" class="" type="text" formControlName="code" ></ion-input>
+      </div> -->
+
+
+      <button ion-button block type="submit" [@fadeIn] = "loginState" [disabled]="!loginForm.valid">Sign In</button>
+    </form>
+    <br />
+    
+    <ion-label floating style="color: white; font-size: 18px; text-align: center; float: right">Version: 12.0.0</ion-label>
+  </div>
+  
+</ion-content>

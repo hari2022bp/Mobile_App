@@ -1,0 +1,354 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+      <p style="color:blue">Adverse Weather Checklist</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="adverseweatherchecklist" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label fixed style="color: black; text-align: center; font-weight: bold;"> Date </ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" formControlName="date" min="{{ currentdate | date:'yyyy-MM-dd' }}"
+        max="{{ enddate | date:'yyyy-MM-dd' }}" [(ngModel)]="myDate"> </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="color: black; font-weight: bold; text-align: center;"> Time </ion-label>
+      <ion-datetime formControlName="inspectiontime" pickerFormat="HH:mm" text-center ngModel required> </ion-datetime>
+    </ion-item>
+    
+    
+    
+    
+   
+    
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> MIAL Safety Officer Name</ion-label>
+      <ion-input type="text" formControlName="SOName" [(ngModel)]="user" disabled="false" text-center></ion-input>
+    </ion-item>
+    
+    
+    
+    
+    
+
+    <div id="demo">
+      <!-- <h1 style="color: navy; font-weight: bold;">
+          Part I: Ramp Assessment for Arriving Aircraft
+        </h1> -->
+      <div class="table-responsive-vertical shadow-z-1">
+        <table id="table1" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold;width: 70%;">Item For Inspection</th>
+              <th style="color: navy; font-weight: bold;">Yes</th>
+              <th style="color: navy; font-weight: bold;">No</th>
+              
+              <th  style="color: navy; font-weight: bold;">Remarks</th>
+            </tr>
+           
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h6>1.Are the landing gears / nose wheel of all aircrafts choked securely?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="landinggear">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="landinggear">
+              </td>
+                <td>
+                <ion-input type="text" formControlName="landinggearRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>2.Are the cabin and hold doors closed and locked properly?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="cabindoor">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="cabindoor">
+              </td>
+               <td>
+                <ion-input type="text" formControlName="cabindoorRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>3.Are the aircraft engine / pitot tuber covers properly secured and without any damage / wear and tear?
+                  Worn-out covers may become FOD.
+                  </h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="aircraftengine">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="aircraftengine">
+              </td>
+              
+              <td>
+                <ion-input type="text" formControlName="aircraftengineRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>4.Are the equipment usually in contact with the aircraft moved out of ERA?
+                  For e.g., step-ladders, BFLs, catering trucks, container dollies, trolleys etc.
+                   </h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="aircraftequipment">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="aircraftequipment">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="aircraftequipmentRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>5.Are all equipment / vehicles parked properly in ESA?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="equipmentparked">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="equipmentparked">
+              </td>
+              
+              <td>
+                <ion-input type="text" formControlName="equipmentparkedRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>6.Are the parking brakes set or chocked on all parked GSE / Vehicles? </h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="parkingbrake">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="parkingbrake">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="parkingbrakeRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>7.Are the wheel chokes / stabilizers deployed for GSE wherever parked?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="wheelchokes">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="wheelchokes">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="wheelchokesRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>8.Are the equipment with an elevated / lifting platform fully lowered and stabilizers deployed?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="elevatedplatform">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="elevatedplatform">
+              </td>
+            
+              <td>
+                <ion-input type="text" formControlName="elevatedplatformRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>9.Are the stabilizers of maintenance steps fully engaged?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="stabilizers">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="stabilizers">
+              </td>
+              
+              <td>
+                <ion-input type="text" formControlName="stabilizersRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<h6>10.Are the containers securely closed and locked on the dollies properly?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="containers">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="containers">
+              </td>
+              
+              <td>
+                <ion-input type="text" formControlName="containersRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>                
+                <h6>11.Are empty ULDs properly secured? </h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="emptyuld">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="emptyuld">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="emptyuldRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>12.Are any loose materials lying inside nearby / underneath the equipment / containers / dollies?
+                  Loose materials, if available, shall be cleared immediately as it may become FOD.
+                   </h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="loosematerials">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="loosematerials">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="loosematerialsRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>13.Is there any loose items such as cleaning tools, bins etc. kept unsecured? </h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="looseitems">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="looseitems">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="looseitemsRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>14.Are FOD bins and other containers properly secured?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="fodbins">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="fodbins">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="fodbinsRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>15.Are aprons in your jurisdiction clear of small loose items?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="jurisdiction">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="jurisdiction">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="jurisdictionRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>16.Are unsecured items in construction/ maintenance sites properly secured?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="unsecureditems">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="unsecureditems">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="unsecureditemsRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>17.Whether the movable barricades placed at airside to secure the worksite and other areas are properly secured?</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="hangarowners">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="hangarowners">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="hangarownersRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>18.Whether the passenger boarding bridges(PBB) have been moved to its home/parking position? (When wind speed >=37 kts)</h6>
+              </td>
+              <td>
+                <input type="radio" value="Yes" formControlName="informgha">
+              </td>
+              <td>
+                <input type="radio" value="No" formControlName="informgha">
+              </td>
+             
+              <td>
+                <ion-input type="text" formControlName="informghaRemarks" placeholder="Remarks"></ion-input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       
+       
+       
+       
+        
+      </div>
+    </div>
+
+    <!-- <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;">Remarks & Signature Of Auditor
+      </ion-label>
+      <ion-textarea formControlName="remarks" ngModel></ion-textarea>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Duty Manager Name </ion-label>
+      <ion-select formControlName="dutymanagername" ngModel required>
+        <ion-option *ngFor="let option of userData" [value]="option.EMAIL_ID"> {{ option.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button ion-button type="submit" block [disabled]="!adverseweatherchecklist.valid">Submit Checklist</button>
+  </form>
+</ion-content>

@@ -1,0 +1,86 @@
+<ion-menu [content]="nav">
+    <ion-header>
+        <ion-toolbar start>
+            <ion-title text-center> Menu </ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content padding>
+        <ion-item text-center>
+           
+                <!-- <ion-icon name="md-code" text-center> IATA-Code </ion-icon> -->
+                <img icon-left src="assets/images/IATA_New.png" (click)="onIATA()" style="width: 50%; height: 50%" />
+           
+        </ion-item>
+
+        <ion-item text-center>
+     
+                <!-- <ion-icon name="home" text-center> Notam </ion-icon> -->
+                <img icon-left src="assets/images/notam_New.png" (click)="onNotam()" style="width: 50%; height: 50%" />
+         
+        </ion-item>
+
+        <ion-item text-center>
+          
+                <img icon-left src="assets/images/FlightRadar_New.png" (click)="onFlightRadar()" style="width: 50%; height: 50%" />
+         
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/ICAO.png" (click)="onICAODocs()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/EAIP.png" (click)="onEAIP()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/AERGM.png" (click)="onAERGM()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/METAR.png" (click)="onMETAR()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/ACI.png" (click)="onACI()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/DGCA.jpg" (click)="onDGCA()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/AW.png" (click)="onAdverseWeatherChecklist()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+          
+            <img icon-left src="assets/images/BreatheUndertaking.png" (click)="onBreatheUndertaking()" style="width: 50%; height: 50%" />
+     
+        </ion-item>
+
+        <ion-item text-center>
+         
+                <img icon-left src="assets/images/logout_New.png"  (click)="onLogout()" style="width: 50%; height: 50%" />
+        </ion-item>
+
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #nav></ion-nav>
+<ion-menu side [content]="nav" swipe-gesture>...</ion-menu>

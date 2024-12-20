@@ -1,0 +1,161 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+      <p style="color:blue"> Adhoc Vehicle Compliance Checklist </p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label fixed> Date </ion-label>
+    <!-- <ion-datetime displayFormat="MMM DD YYYY" name="{{'date'}}" [(ngModel)]="date" > </ion-datetime> -->
+    <!-- <ion-datetime displayFormat="MMM DD YYYY" name="{{'date'}}" [(ngModel)]="date" min="{{ currentdate | date:'yyyy-MM-dd' }}"
+      max="{{ enddate | date:'yyyy-MM-dd' }}" ngModel required></ion-datetime> -->
+      <ion-datetime displayFormat="MMM DD YYYY" name="{{'date'}}" [(ngModel)]="date" min="{{ currentdate | date:'yyyy-MM-dd' }}" 
+      max="{{ enddate | date:'yyyy-MM-dd' }}" ngModel required> </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating> Start Inspection Time </ion-label>
+    <!-- <ion-input type="text" name="{{'time'}}" [(ngModel)]="time" text-center></ion-input> -->
+    <ion-datetime displayFormat="HH:mm" name="{{'time'}}" [(ngModel)]="time" text-center></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating> End Inspection Time </ion-label>
+    <!-- <ion-input type="text" name="{{'endtime'}}" [(ngModel)]="endtime" text-center></ion-input> -->
+    <ion-datetime displayFormat="HH:mm" name="{{'endtime'}}" [(ngModel)]="endtime" text-center> </ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label floating> Location </ion-label>
+    <ion-select name="location" [(ngModel)]="location">
+      <ion-option *ngFor="let option of vehicleloc" [value]="option"> {{ option }} </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating> No of vehicles </ion-label>
+    
+    <ion-input name="noofvehicles" type="number" [(ngModel)]="noofvehicles" text-center></ion-input>
+    
+  </ion-item>
+  <input type="submit" class="btn btn-primary addnew pull-right" (click)="addNew()" [disabled]="disableButton" value="Add">
+
+  <div id="demo" style="margin:2px auto; max-width:100%;">
+    <h1 style="color: navy; font-weight: bold;">Vehicle Compliance Checklist</h1>
+    <h2>This checklist handles vehicle inspection procedures.</h2>
+
+    <div style="width:100%;padding-left:0%;">
+      <table id="table" class="table table-hover table-mc-light-blue" style="padding-left:0%;width:100%">
+        <thead>
+          <tr>
+            <th text-center style="color: navy; font-weight: bold;">Registration/Identification No</th>
+            <th text-center style="color: navy; font-weight: bold;">Name of Driver</th>
+            <th text-center style="color: navy; font-weight: bold;">ADP No</th>
+            <th text-center style="color: navy; font-weight: bold;">AVP No</th>
+            <th text-center style="color: navy; font-weight: bold;">Agency</th>
+            <th text-center style="color: navy; font-weight: bold;">General-Brakes, Tyres, cleanliness </th>
+            <th text-center style="color: navy; font-weight: bold;">Availability of Servicable Fire Extinguisher</th>
+            <th text-center style="color: navy; font-weight: bold;">Over Speeding</th>
+            <th text-center style="color: navy; font-weight: bold;">Display of Obstacle Light/Flag</th>
+            <th text-center style="color: navy; font-weight: bold;">Servicable Head Light/Tail Light</th>
+            <th text-center style="color: navy; font-weight: bold;">Display of co. Logo</th>
+            <th text-center style="color: navy; font-weight: bold;">Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let personalDetail of vehiclecomplianceobservations; let i=index;">
+            <td>
+              <h6>
+                <ion-input name="{{'registration'+i}}" type="text" [(ngModel)]="personalDetail.registration"
+                  placeholder="enter registration/identification number" text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6 text-center>
+                <ion-input name="{{'drivername'+i}}" type="text" [(ngModel)]="personalDetail.drivername" text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6 text-center>
+                <ion-input name="{{'adpno'+i}}" [(ngModel)]="personalDetail.adpno" text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6 text-center>
+                <ion-input name="{{'avpno'+i}}" [(ngModel)]="personalDetail.avpno" text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6 text-center>
+                <ion-input name="{{'agency'+i}}" [(ngModel)]="personalDetail.agency" text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6 text-center>
+                <ion-input name="{{'general'+i}}" [(ngModel)]="personalDetail.general" text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6>
+                <ion-input name="{{'availability'+i}}" type="text" [(ngModel)]="personalDetail.availability"
+                  text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6>
+                <ion-input name="{{'overspeeding'+i}}" type="text" [(ngModel)]="personalDetail.overspeeding"
+                  text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6>
+                <ion-input name="{{'displayofobstacle'+i}}" type="text" [(ngModel)]="personalDetail.displayofobstacle"
+                  text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6>
+                <ion-input name="{{'serviceableheadlight'+i}}" type="text" [(ngModel)]="personalDetail.serviceableheadlight"
+                  text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6>
+                <ion-input name="{{'displayoflogo'+i}}" type="text" [(ngModel)]="personalDetail.displayoflogo"
+                  text-center></ion-input>
+              </h6>
+            </td>
+            <td>
+              <h6>
+                <ion-input name="{{'remarks'+i}}" type="text" [(ngModel)]="personalDetail.remarks" text-center></ion-input>
+              </h6>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- <input type="submit" class="btn btn-primary addnew pull-right" (click)="addNew()" value="Add"> -->
+
+
+    </div>
+
+  </div>
+
+  <ion-item>
+    
+    <ion-label floating style="color: black;"> Duty Manager Name </ion-label>
+
+    <ion-select name="dutymanagername" [(ngModel)]="to_mailid" ngModel required>
+      <ion-option *ngFor="let option of userData" [value]="option.EMAIL_ID"> {{ option.Name }} </ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <button ion-button type="submit"  [disabled]="onValidate()" (click)="onSubmit()" block>Submit Checklist</button>
+
+</ion-content>

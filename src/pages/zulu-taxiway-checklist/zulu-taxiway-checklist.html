@@ -1,0 +1,284 @@
+<!--
+  Generated template for the ZuloTaxiwayChecklistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center color="primary">
+        <p style="color:blue">  Taxiway-Z-checklist</p>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<form  [formGroup]="zulutaxiwaychecklistForm"  (ngSubmit)="onSubmit()"  >
+
+
+
+    <ion-item>
+        <ion-label fixed style="color: black; font-weight: bold;"> Date </ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" formControlName="date" min="{{ currentdate | date:'yyyy-MM-dd' }}" max="{{ enddate | date:'yyyy-MM-dd' }}" [(ngModel)]="myDate" required> </ion-datetime>
+
+        <!-- <ion-datetime displayFormat="MMM DD YYYY" formControlName="date"  [(ngModel)]="myDate"></ion-datetime> -->
+
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating style="color: black; font-weight: bold; text-align: center;">Taxiway Z Inspected </ion-label>
+      <ion-input type="text" formControlName="rwyinspected" ngModel required></ion-input> 
+     <ion-select formControlName="rwyinspected" ngModel required>
+         <ion-option *ngFor="let option of rwyOptions" [value]="option.Areas"> {{ option.Area_Group }} </ion-option>
+     </ion-select>
+</ion-item>
+<ion-item>
+    <ion-label floating style="color: black; font-weight: bold; text-align: center;"> Start Time of inspection </ion-label>
+    
+    <!-- <ion-input type="text" formControlName="inspectiontime" text-center ngModel required></ion-input> -->
+
+    <ion-datetime  formControlName="inspectiontime" pickerFormat="HH:mm" text-center ngModel required> </ion-datetime>
+</ion-item>
+<ion-item>
+<ion-label floating style="color: black; font-weight: bold; text-align: center;"> End Time Of Inspection </ion-label>
+
+<ion-datetime  formControlName="endinspectiontime" pickerFormat="HH:mm" text-center ngModel required> </ion-datetime>
+<!-- <ion-input type="text" formControlName="endinspectiontime" text-center ngModel required></ion-input> -->
+
+</ion-item>
+
+<ion-item text-center>
+    Cleared, &nbsp; Not Cleared, &nbsp; Available, &nbsp; Not Available, &nbsp;
+    Placed, &nbsp; Not Placed, &nbsp; Masked, &nbsp; Unmasked
+  </ion-item>
+
+<div id="demo">
+    <h1 style="color: navy; font-weight: bold;">Taxiway Z Checklist Form</h1>
+    <h2>This checklist contains  taxiway Z parameters to perform daily checks</h2>
+<div class="table-responsive-vertical shadow-z-1">
+    <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+          <tr>
+              <th style="color: navy; font-weight: bold;">Observations</th>
+              <th style="color: navy; font-weight: bold;">Status</th>
+              <th style="color: navy; font-weight: bold;">Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                  <h6>GHA/GSE</h6>
+                </td>
+                <td style="color: black">
+                  <select formControlName="GHAGSE">
+                    <option *ngFor="let status of GHAGSEStatus" [value]="status">
+                      {{ status }}
+                    </option>
+                  </select>
+                </td>
+                <td style="color: black">
+                  <ion-input type="text" formControlName="GHAGSEAction" placeholder="Remarks" ngModel></ion-input>
+                </td>
+              </tr>
+
+              <tr style="color: black">
+                  <td data-title = "Observations">
+                  <h6> Cones </h6>
+                  </td>
+                  <td>
+                    <select formControlName="Cones">
+                      <option *ngFor="let status of GHAGSEStatus" [value]="status">
+                        {{ status }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <ion-input type="text" formControlName="ConesAction" placeholder="Remarks" ngModel></ion-input>
+                  </td>
+                  <!-- <td> 
+                      <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                  </td> -->
+                </tr>
+
+
+
+                
+              <tr style="color: black">
+                  <td data-title = "Observations">
+                  <h6> Chocks </h6>
+                  </td>
+                  <td>
+                    <select formControlName="Chocks">
+                      <option *ngFor="let status of GHAGSEStatus" [value]="status">
+                        {{ status }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <ion-input type="text" formControlName="ChocksAction" placeholder="Remarks" ngModel></ion-input>
+                  </td>
+                  <!-- <td> 
+                      <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                  </td> -->
+                </tr>
+
+
+                
+              <tr style="color: black">
+                  <td data-title = "Observations">
+                  <h6> G6 </h6>
+                  </td>
+                  <td>
+                    <select formControlName="G6">
+                      <option *ngFor="let status of STANDStatus" [value]="status">
+                        {{ status }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <ion-input type="text" formControlName="G6Action" placeholder="Remarks" ngModel></ion-input>
+                  </td>
+                  <!-- <td> 
+                      <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                  </td> -->
+                </tr>
+
+
+                
+              <tr style="color: black">
+                  <td data-title = "Observations">
+                  <h6> G7 </h6>
+                  </td>
+                  <td>
+                    <select formControlName="G7">
+                      <option *ngFor="let status of STANDStatus" [value]="status">
+                        {{ status }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <ion-input type="text" formControlName="G7Action" placeholder="Remarks" ngModel></ion-input>
+                  </td>
+                  <!-- <td> 
+                      <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                  </td> -->
+                </tr>
+
+
+                <tr style="color: black">
+                    <td data-title = "Observations">
+                    <h6> G8 </h6>
+                    </td>
+                    <td>
+                      <select formControlName="G8">
+                        <option *ngFor="let status of STANDStatus" [value]="status">
+                          {{ status }}
+                        </option>
+                      </select>
+                    </td>
+                    <td>
+                      <ion-input type="text" formControlName="G8Action" placeholder="Remarks" ngModel></ion-input>
+                    </td>
+                    <!-- <td> 
+                        <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                    </td> -->
+                  </tr>
+
+
+                  
+                <tr style="color: black">
+                    <td data-title = "Observations">
+                    <h6> Temporary OBS Lights </h6>
+                    </td>
+                    <td>
+                      <select formControlName="TemporaryOBSLights">
+                        <option *ngFor="let status of LIGHTS_Status" [value]="status">
+                          {{ status }}
+                        </option>
+                      </select>
+                    </td>
+                    <td>
+                      <ion-input type="text" formControlName="TemporaryOBSLightsAction" placeholder="Remarks" ngModel></ion-input>
+                    </td>
+                    <!-- <td> 
+                        <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                    </td> -->
+                  </tr>
+
+
+                  
+                <tr style="color: black">
+                    <td data-title = "Observations">
+                    <h6> Water filled barricades </h6>
+                    </td>
+                    <td>
+                      <select formControlName="Waterfilledbarricades">
+                        <option *ngFor="let status of LIGHTS_Status" [value]="status">
+                          {{ status }}
+                        </option>
+                      </select>
+                    </td>
+                    <td>
+                      <ion-input type="text" formControlName="WaterfilledbarricadesAction" placeholder="Remarks" ngModel></ion-input>
+                    </td>
+                    <!-- <td> 
+                        <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                    </td> -->
+                  </tr>
+
+
+                  <tr style="color: black">
+                      <td data-title = "Observations">
+                      <h6> Masking Unmasking signs </h6>
+                      </td>
+                      <td>
+                        <select formControlName="MaskingUnmaskingsigns">
+                          <option *ngFor="let status of SIGN_Status" [value]="status">
+                            {{ status }}
+                          </option>
+                        </select>
+                      </td>
+                      <td>
+                        <ion-input type="text" formControlName="MaskingUnmaskingsignsAction" placeholder="Remarks" ngModel></ion-input>
+                      </td>
+                      <!-- <td> 
+                          <input type="file" id="3" value="Upload" (change)="fileChange($event)" class="upload" /> 
+                      </td> -->
+                    </tr>
+
+
+                    <tr>
+                      <td style="color: black; text-align: center; font-weight: bold;">
+                        <h6> Department </h6>
+                        <ion-input type="text" formControlName="InspectorSign" placeholder="Department Name" disabled="true" text-center></ion-input>
+                      </td>
+                      <td>
+                        
+                      </td>
+                      <td style="color: black; text-align: center; font-weight: bold;">
+                        <h6> Name </h6>
+                        <ion-input type="text" formControlName="InspectorName" placeholder="Enter Name" [(ngModel)]="user" disabled="true" text-center></ion-input>
+                      </td>
+                    </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</div>
+<ion-item>
+    <ion-label floating style="color: black; text-align: center; font-weight: bold;">Other Observations</ion-label>
+    <ion-textarea formControlName="otherobservations" ngModel></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Duty Manager Name </ion-label>
+      <ion-select formControlName="dutymanagername" ngModel required>
+          <ion-option *ngFor="let option of userData" [value]="option.EMAIL_ID"> {{ option.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button type="submit" block [disabled]="!zulutaxiwaychecklistForm.valid">Submit Checklist</button>
+</form>
+</ion-content>

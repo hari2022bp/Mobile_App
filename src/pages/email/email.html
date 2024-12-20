@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+      <p style="color:blue">Email</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+
+    <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Select Department </ion-label>
+
+    <ion-select name="department" [(ngModel)]="department" ngModel required>
+      <ion-option *ngFor="let dept of departmentList" [value]="dept.Dept_ID"> {{ dept.DepartmentName }} </ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label floating style="color: black; text-align: center; font-weight: bold;"> Select Priority </ion-label>
+
+    <ion-select name="priority" [(ngModel)]="priority" ngModel required>
+      <ion-option *ngFor="let item of priorityList" [value]="item.PriorityID"> {{ item.PName }} </ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item>
+
+      <ion-label floating style="color: black; text-align: center; font-weight: bold;">Observation Found</ion-label>
+
+      <ion-textarea name="observation" [(ngModel)]="observation"></ion-textarea>
+
+  </ion-item>
+
+  <ion-item>
+
+      <!-- <span class="tim-note" style="color: #282828; font-weight: bold;">Upload Image</span> -->
+
+      <!-- <ion-label floating style="color: black; text-align: center; font-weight: bold;">Upload Image</ion-label> -->
+
+      <input type="file" id="observationImageUpload" value="Upload" (change)="fileChange($event)" multiple >
+
+  </ion-item>
+
+  <button [disabled]="onValidate()" ion-button type="submit" (click) = "onSubmit()" block>Send Email</button>
+
+</ion-content>

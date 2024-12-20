@@ -1,0 +1,104 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center color="primary">
+      <p style="color:blue">Breathe Analyser Undertaking</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="breatheanalyserForm" (ngSubmit)="onSubmit()">
+
+    <div id="demo">
+      <!-- <h2 style="color: navy; font-weight: bold;">LETTER OF UNDERTAKING</h2> -->
+      <!-- <h2>This checklist contains runway parameters to perform daily checks</h2> -->
+      <div class="table-responsive-vertical shadow-z-1">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th style="color: navy; font-weight: bold; text-align: center;">LETTER OF UNDERTAKING</th>
+              <!-- <th text-center style="color:navy; font-weight:bold;"> Upload Image</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h5 style="text-align: center;">                 
+                  I, the undersigned, have reported for duty today and hereby solemnly declare that I am not under the 
+                  influence of any psychoactive substance / alcohol and have not consumed alcohol or taken any other 
+                  psychoactive substance in the last 12 hours from the time of reporting for duty.                 
+                </h5>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h5 style="text-align: center;"> 
+                  I also confirm that I am aware of the DGCA Civil Aviation Requirements published under Section 5, Series F, 
+                  Part IV, Issue 1, dated 16th Sep. 2019, on “Procedure for breath-analyser examination of the personnel engaged 
+                  in Aircraft maintenance, Air traffic control services, Aerodrome operations, Ground handling services for 
+                  detecting consumption of Alcohol” and all other related Orders / Circulars / Guidelines issued by DGCA from 
+                  time-to-time, including the penal actions in case of violation of the same, which may even lead to my permanent 
+                  removal from performing safety sensitive functions.   
+                </h5>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h5 style="text-align: center;"> 
+                  This Undertaking is being submitted in compliance to the requirement mentioned in DGCA Order 
+                  No. DGCA-15031/4/2020-DAS dated 29.03.2020.
+                </h5>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h5 style="text-align: center;"> 
+                  Yours Sincerely,
+                </h5>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: black; text-align: center; font-weight: bold;">
+                <h6> Name </h6>
+                <ion-input type="text" formControlName="name" disabled="true" [(ngModel)]="employeename" text-center></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: black; text-align: center; font-weight: bold;">
+                <h6> Employee ID </h6>
+                <ion-input type="text" formControlName="empcode" disabled="true" [(ngModel)]="employeecode" text-center></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: black; text-align: center; font-weight: bold;">
+                <h6> Designation </h6>
+                <ion-input type="text" formControlName="designation" disabled="true" placeholder="Designation" text-center></ion-input>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: black; text-align: center; font-weight: bold;">
+                <h6> Organization </h6>
+                <ion-input type="text" formControlName="organization" disabled="true" placeholder="Organization" text-center></ion-input>
+              </td>
+            </tr>
+            <tr>             
+              <td style="color: black; text-align: center; font-weight: bold;">
+                <h6> Reporting Date </h6>
+                <ion-datetime displayFormat="MMM DD YYYY" formControlName="reportingdate" min="{{ currentdate | date:'yyyy-MM-dd' }}" max="{{ enddate | date:'yyyy-MM-dd' }}" [(ngModel)]="myDate" required> </ion-datetime>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: black; text-align: center; font-weight: bold;">
+                <h6> Reporting Time </h6>
+                <ion-datetime  formControlName="reportingtime" placeholder="00:00:00" pickerFormat="HH:mm" text-center ngModel required></ion-datetime>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button ion-button type="submit" block [disabled]="!breatheanalyserForm.valid">Submit</button>
+  </form>
+</ion-content>

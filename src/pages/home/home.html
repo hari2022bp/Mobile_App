@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>
+      <p style="color:blue; font-size: 22px">Welcome To ASMA, {{ username }}! </p>
+    </ion-title>
+  </ion-navbar>
+  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+</ion-header>
+
+<ion-content padding id="layered-image">
+  <div class="container-fluid">
+  
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+       
+          <img src="assets/images/Runway_New.png" (click) ="onRunwayChecklistPage()" />
+          <!-- <div class="card-title">Runway Inspection Checklist</div> -->
+      
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+       
+          <img src="assets/images/Taxiway_New.png" (click) ="onTaxiwayChecklistPage()" />
+          <!-- <div class="card-title">Taxiway Inspection Checklist</div> -->
+       
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+     
+          <img src="assets/images/Apron_New.png" (click) ="onApronChecklistPage()" />
+          <!-- <div class="card-title">Apron Inspection Checklist</div> -->
+      
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+     
+          <img src="assets/images/Adhoc_Crop.png" (click) = "onAdhocHomeModule()" />
+          <!-- <div class="card-title">Adhoc Runway Inspection Checklist</div> -->
+      
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+        
+          <img src="assets/images/RampAssessment_New.png" (click) = "onRampHandlingChecklistPage()" />
+          <!-- <div class="card-title">Ramp Handling Assessment Checklist</div> -->
+     
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+       
+          <img src="assets/images/Vehicle_New.png" (click) = "onVehicleComplianceChecklist()" />
+          <!-- <div class="card-title">Vehicle Compliance Checklist</div> -->
+       
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+ 
+          <img src="assets/images/Email_New.png" (click) = "onEmailPage()" />
+          <!-- <div class="card-title">Adhoc Runway Inspection Checklist</div> -->
+     
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+
+          <img src="assets/images/Aircraft_New.png" (click) ="onAircraftData()" />
+          <!-- <div class="card-title">Ramp Handling Assessment Checklist</div> -->
+      
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4" style="padding: 2%">
+       
+          <img src="assets/images/Aerodrome_New.png" (click) ="onAerodromeData()" />
+          <!-- <div class="card-title">Vehicle Compliance Checklist</div> -->
+      
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
